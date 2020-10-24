@@ -3,7 +3,7 @@ import sqlite3
 
 app = Flask(__name__)
 
-conn = sqlite3.connect('social_network.db')
+conn = sqlite3.connect('quize.db')
 c = conn.cursor()
 
 
