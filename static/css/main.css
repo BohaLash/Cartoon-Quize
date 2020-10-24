@@ -1,0 +1,46 @@
+body{
+  margin: 0;
+  padding: 0;
+  background: #e67e22;
+}
+.cat{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 661px;
+  height: 359px;
+  background: url(../img/cat.png);
+  border: 5px solid #fff;
+  border-radius: 20px;
+}
+
+.eyes_box{
+  width: 240px;
+  height: 120px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-100px, -90px);
+}
+
+.eyes{
+  width: 150px;
+  height: 49px;
+  background: url(../img/eyes.png);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.no_eyes {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 661px;
+  height: 359px;
+  background: url(../img/no_eyes.png);
+  border-radius: 20px;
+}

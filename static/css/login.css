@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    /* background: #e67e22; */
+}
+
+form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10%;
+    text-align: center;
+    border: solid;
+}
+
+input {
+    margin: 0;
+    background: black;
+    color: white;
+    border: none;
+}
+
+div {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+label {
+    font-family: Arial;
+    font-size: 0.7em;
+}
