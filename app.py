@@ -53,7 +53,7 @@ def question(n):
         answ = request.form['a']
         a[int(n)] += int(answ)
         q[int(n)] += 1
-        return redirect(f'/q/{str(n)}' if q[int(n)] <= 1 else f'/res/{str(n)}')
+        return redirect(f'/q/{str(n)}' if q[int(n)] <= 100 else f'/res/{str(n)}')
     with sqlite3.connect("quize.db") as con:
         cur = con.cursor()
         data = cur.execute(
@@ -68,9 +68,7 @@ def question(n):
 @app.route('/res/<n>', methods=["GET", "POST"])
 def result(n):
     global a, q
-    if not (int(n) in a.keys() or int(n) in q.keys()):
-        return redirect('/')
-    if request.method == "POST":
+    if not (int(n) in a.keys() or int(n) in q.keys()) or request.method == "POST":
         return redirect('/')
     q.pop(int(n))
     return render_template("result.html", res=a.pop(int(n)))
