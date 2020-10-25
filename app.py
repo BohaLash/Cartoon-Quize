@@ -59,6 +59,7 @@ def question(n):
         data = cur.execute(
             "SELECT * FROM questions WHERE rowid = ?", (q[int(n)], ))
         row = data.fetchone()
+        print(row)
         question = str(row[0])
         answs = [str(row[1]), str(row[2]), str(row[3])]
     return render_template("question.html", question=question, answ=answs)
