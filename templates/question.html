@@ -4,14 +4,24 @@
 <head>
     <meta charset="utf-8">
     <!-- <link rel="stylesheet" href="/static/css/login.css"> -->
-    <title>Login</title>
+    <title>Question</title>
 </head>
 
 <body>
     <h1>{{question}}</h1>
     <form method="post">
-        <label for="a">{{answ[0]}}</label>
-        <input type="radio" name="a" value="0">
+        <div>
+            <input type="radio" name="a" value="0">
+            <label for="a">{{answ[0]}}</label>
+        </div>
+        <div>
+            <input type="radio" name="a" value="1">
+            <label for="a">{{answ[1]}}</label>
+        </div>
+        <div>
+            <input type="radio" name="a" value="2">
+            <label for="a">{{answ[2]}}</label>
+        </div>
         <input type="submit" value="Answer">
     </form>
 

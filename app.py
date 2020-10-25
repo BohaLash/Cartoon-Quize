@@ -26,8 +26,8 @@ conn.commit()
 
 
 global a, q
-a = {0: 1}
-q = {0: 1}
+a = {}
+q = {}
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -38,7 +38,7 @@ def main():
         while key in a.keys() or key in q.keys():
             key = random.randrange(99999)
         a[key] = 0
-        q[key] = 0
+        q[key] = 1
         return redirect('/q/' + str(key))
     return render_template("index.html")
 
@@ -46,19 +46,33 @@ def main():
 @app.route('/q/<n>', methods=["GET", "POST"])
 def question(n):
     global a, q
+    if not (int(n) in a.keys() or int(n) in q.keys()):
+        return redirect('/')
+    print(n, a[int(n)], q[int(n)])
     if request.method == "POST":
-        answ = request.form['answ']
-        a[n] += answ
-        q[n] += 1
-        return redirect('/q/' + str(n))
+        answ = request.form['a']
+        a[int(n)] += int(answ)
+        q[int(n)] += 1
+        return redirect(f'/q/{str(n)}' if q[int(n)] <= 1 else f'/res/{str(n)}')
     with sqlite3.connect("quize.db") as con:
         cur = con.cursor()
         data = cur.execute(
-            "SELECT * FROM questions WHERE rowid = ?", (q[int(n)], ))  #
+            "SELECT * FROM questions WHERE rowid = ?", (q[int(n)], ))
         row = data.fetchone()
         question = str(row[0])
         answs = [str(row[1]), str(row[2]), str(row[3])]
     return render_template("question.html", question=question, answ=answs)
+
+
+@app.route('/res/<n>', methods=["GET", "POST"])
+def result(n):
+    global a, q
+    if not (int(n) in a.keys() or int(n) in q.keys()):
+        return redirect('/')
+    if request.method == "POST":
+        return redirect('/')
+    q.pop(int(n))
+    return render_template("result.html", res=a.pop(int(n)))
 
 
 if __name__ == "__main__":
