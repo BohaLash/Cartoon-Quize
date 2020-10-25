@@ -26,8 +26,8 @@ conn.commit()
 
 
 global a, q
-a = {0: 0}
-q = {0: 0}
+a = {0: 1}
+q = {0: 1}
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -53,10 +53,11 @@ def question(n):
         return redirect('/q/' + str(n))
     with sqlite3.connect("quize.db") as con:
         cur = con.cursor()
-        row = cur.execute(
-            "SELECT * FROM question WHERE rowid = 1")
-    question = row[0]
-    answs = [row[1], row[2], row[3]]
+        data = cur.execute(
+            "SELECT * FROM questions WHERE rowid = ?", (q[int(n)], ))  #
+        row = data.fetchone()
+        question = str(row[0])
+        answs = [str(row[1]), str(row[2]), str(row[3])]
     return render_template("question.html", question=question, answ=answs)
 
 
