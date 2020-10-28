@@ -12,7 +12,8 @@ c = conn.cursor()
 #         q TEXT,
 #         a1 TEXT,
 #         a2 TEXT,
-#         a3 TEXT
+#         a3 TEXT,
+#         a4 TEXT
 #     )
 # """)
 # conn.commit()
@@ -53,7 +54,7 @@ def question(n):
         answ = request.form['a']
         a[int(n)] += int(answ)
         q[int(n)] += 1
-        return redirect(f'/q/{str(n)}' if q[int(n)] <= 100 else f'/res/{str(n)}')
+        return redirect(f'/q/{str(n)}' if q[int(n)] <= 2 else f'/res/{str(n)}')
     with sqlite3.connect("quize.db") as con:
         cur = con.cursor()
         data = cur.execute(
@@ -61,7 +62,7 @@ def question(n):
         row = data.fetchone()
         print(row)
         question = str(row[0])
-        answs = [str(row[1]), str(row[2]), str(row[3])]
+        answs = [str(row[1]), str(row[2]), str(row[3]), str(row[4])]
     return render_template("question.html", question=question, answ=answs)
 
 
