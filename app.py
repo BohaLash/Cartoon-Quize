@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, redirect
+from flask import Flask, render_template, redirect, request
 import sqlite3
 import random
 
