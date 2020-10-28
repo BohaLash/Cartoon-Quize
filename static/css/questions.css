@@ -6,16 +6,10 @@ section {
     width: 50%;
     height: 50%;
     padding: 3em;
-    background-image: url("../img/homer-bg.png");
-    background-size: cover;
+    background-color: rgb(48, 0, 111);
     border-radius: 5em;
     box-shadow: 0 0 2em rgb(30, 0, 70);
-    text-align: right;
-    color: black;
-}
-
-input {
-    font-size: large;
+    color: white;
 }
 
 @media screen and (max-width: 800px) {
