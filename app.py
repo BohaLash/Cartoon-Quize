@@ -4,6 +4,7 @@ import random
 
 app = Flask(__name__)
 
+# db initialization
 conn = sqlite3.connect('quize.db')
 c = conn.cursor()
 
@@ -34,7 +35,9 @@ q = {}
 @app.route('/', methods=['GET', 'POST'])
 def main():
     global a, q
+    # starting quize
     if request.method == "POST":
+        # generate user hash
         key = random.randrange(99999)
         while key in a.keys() or key in q.keys():
             key = random.randrange(99999)
@@ -47,19 +50,23 @@ def main():
 @app.route('/q/<n>', methods=["GET", "POST"])
 def question(n):
     global a, q
+    # on invalid user hesh
     if not (int(n) in a.keys() or int(n) in q.keys()):
         return redirect('/')
+    # on resiving answer
     if request.method == "POST":
         answ = int(request.form['a'])
+        # get true answer
         with sqlite3.connect("quize.db") as con:
             cur = con.cursor()
             data = cur.execute(
                 "SELECT * FROM answ WHERE rowid = ?", (q[int(n)], ))
-        t = int(data.fetchone()[0])
+            t = int(data.fetchone()[0])
         if answ == t:
             a[int(n)] += 1
         q[int(n)] += 1
         return redirect(f'/q/{str(n)}' if q[int(n)] <= 48 else f'/res/{str(n)}')
+    # get question and answers
     with sqlite3.connect("quize.db") as con:
         cur = con.cursor()
         data = cur.execute(
@@ -73,6 +80,7 @@ def question(n):
 @app.route('/res/<n>', methods=["GET", "POST"])
 def result(n):
     global a, q
+    # on invalid user hesh or button click
     if not (int(n) in a.keys() or int(n) in q.keys()) or request.method == "POST":
         return redirect('/')
     q.pop(int(n))
@@ -80,4 +88,4 @@ def result(n):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=80)
+    app.run(debug=False, host="0.0.0.0", port=80)
