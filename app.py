@@ -51,10 +51,19 @@ def question(n):
         return redirect('/')
     print(n, a[int(n)], q[int(n)])
     if request.method == "POST":
-        answ = request.form['a']
-        a[int(n)] += int(answ)
+
+        answ = int(request.form['a'])
+        with sqlite3.connect("quize.db") as con:
+            cur = con.cursor()
+            data = cur.execute(
+                "SELECT * FROM answ WHERE rowid = ?", (q[int(n)], ))
+        t = int(data.fetchone()[0])
+        print(t)
+        if answ == t:
+            print('+')
+            a[int(n)] += 1
         q[int(n)] += 1
-        return redirect(f'/q/{str(n)}' if q[int(n)] <= 2 else f'/res/{str(n)}')
+        return redirect(f'/q/{str(n)}' if q[int(n)] <= 48 else f'/res/{str(n)}')
     with sqlite3.connect("quize.db") as con:
         cur = con.cursor()
         data = cur.execute(
