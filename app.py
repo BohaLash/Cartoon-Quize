@@ -49,18 +49,14 @@ def question(n):
     global a, q
     if not (int(n) in a.keys() or int(n) in q.keys()):
         return redirect('/')
-    print(n, a[int(n)], q[int(n)])
     if request.method == "POST":
-
         answ = int(request.form['a'])
         with sqlite3.connect("quize.db") as con:
             cur = con.cursor()
             data = cur.execute(
                 "SELECT * FROM answ WHERE rowid = ?", (q[int(n)], ))
         t = int(data.fetchone()[0])
-        print(t)
         if answ == t:
-            print('+')
             a[int(n)] += 1
         q[int(n)] += 1
         return redirect(f'/q/{str(n)}' if q[int(n)] <= 48 else f'/res/{str(n)}')
@@ -69,7 +65,6 @@ def question(n):
         data = cur.execute(
             "SELECT * FROM questions WHERE rowid = ?", (q[int(n)], ))
         row = data.fetchone()
-        print(row)
         question = str(row[0])
         answs = [str(row[1]), str(row[2]), str(row[3]), str(row[4])]
     return render_template("question.html", question=question, answ=answs)
