@@ -3,31 +3,35 @@
 
 <head>
     <meta charset="utf-8">
-    <!-- <link rel="stylesheet" href="/static/css/login.css"> -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/questions.css">
     <title>Question</title>
 </head>
 
 <body>
-    <h1>{{question}}</h1>
-    <form method="post">
-        <div>
-            <input type="radio" name="a" value="0" required>
-            <label for="a">{{answ[0]}}</label>
-        </div>
-        <div>
-            <input type="radio" name="a" value="1" required>
-            <label for="a">{{answ[1]}}</label>
-        </div>
-        <div>
-            <input type="radio" name="a" value="2" required>
-            <label for="a">{{answ[2]}}</label>
-        </div>
-        <div>
-            <input type="radio" name="a" value="3" required>
-            <label for="a">{{answ[3]}}</label>
-        </div>
-        <input type="submit" value="Answer">
-    </form>
+    <section>
+        <h1>{{question}}</h1>
+        <form method="post">
+            <div>
+                <input type="radio" name="a" value="0" required>
+                <label for="a">{{answ[0]}}</label>
+            </div>
+            <div>
+                <input type="radio" name="a" value="1" required>
+                <label for="a">{{answ[1]}}</label>
+            </div>
+            <div>
+                <input type="radio" name="a" value="2" required>
+                <label for="a">{{answ[2]}}</label>
+            </div>
+            <div>
+                <input type="radio" name="a" value="3" required>
+                <label for="a">{{answ[3]}}</label>
+            </div>
+            <input type="submit" value="Answer">
+        </form>
+        <img src="../static/img/family-logo.png" alt="logo">
+    </section>
 
 </body>
 
