@@ -5,7 +5,7 @@ import random
 app = Flask(__name__)
 
 # db initialization
-conn = sqlite3.connect('quize.db')
+conn = sqlite3.connect('quiz.db')
 c = conn.cursor()
 
 # c.execute("""
@@ -57,7 +57,7 @@ def question(n):
     if request.method == "POST":
         answ = int(request.form['a'])
         # get true answer
-        with sqlite3.connect("quize.db") as con:
+        with sqlite3.connect("quiz.db") as con:
             cur = con.cursor()
             data = cur.execute(
                 "SELECT * FROM answ WHERE rowid = ?", (q[int(n)], ))
@@ -67,7 +67,7 @@ def question(n):
         q[int(n)] += 1
         return redirect(f'/q/{str(n)}' if q[int(n)] <= 48 else f'/res/{str(n)}')
     # get question and answers
-    with sqlite3.connect("quize.db") as con:
+    with sqlite3.connect("quiz.db") as con:
         cur = con.cursor()
         data = cur.execute(
             "SELECT * FROM questions WHERE rowid = ?", (q[int(n)], ))
@@ -88,4 +88,4 @@ def result(n):
 
 
 if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0", port=80)
+    app.run(debug=True, host="0.0.0.0", port=80)

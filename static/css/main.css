@@ -1,25 +1,30 @@
-body {
-    margin: 0;
-    padding: 0;
-    background-image: url("../img/pattern-bg.jpg");
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-h1 {
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-}
-
-img {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 1em 3em;
-}
-
-input {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0.7em;
-    border: solid;
-    border-radius: 1em;
-    background: white;
-}
+    @font-face {
+        font-family: 'SimpsonFont';
+        src: url('../fonts/simpson-font.ttf');
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url("../img/pattern-bg.jpg");
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    h1 {
+        font-family: "SimpsonFont", "Comic Sans MS", "Comic Sans", cursive;
+    }
+    
+    img {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 1em 3em;
+    }
+    
+    input {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0.7em;
+        border: solid;
+        border-radius: 1em;
+        background: white;
+    }
