@@ -76,7 +76,8 @@ def question(n):
                     "SELECT * FROM questions WHERE rowid = ?", (q[int(n)], ))
                 row = data.fetchone()
                 # put it in messaage
-                m[int(n)] = 'Your made a mistake! The correct answer was: ' + str(row[t])
+                m[int(n)] = 'Your made a mistake! The correct answer was: ' + \
+                    str(row[t + 1])
         q[int(n)] += 1
         return redirect(f'/q/{str(n)}' if q[int(n)] <= 48 else f'/res/{str(n)}')
     # get question and answers
